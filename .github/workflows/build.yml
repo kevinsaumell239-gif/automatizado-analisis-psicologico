@@ -1,10 +1,10 @@
 name: Compilar Cronología Fidel Castro
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+ workflow_dispatch:
+ push:
+ branches:
+ - main
 
 jobs:
  build:
@@ -12,50 +12,47 @@ jobs:
  permissions:
  contents: write
  steps:
- - uses: actions/checkout@v4
+ - name: Descargar repositorio
+ uses: actions/checkout@v4
 
-    steps:
-      - name: Descargar repositorio
-        uses: actions/checkout@v4
+ - name: Instalar Flutter
+ uses: subosito/flutter-action@v2
+ with:
+ channel: stable
 
-      - name: Instalar Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
+ - name: Crear estructura Android
+ run: |
+ flutter create --platforms=android .
 
-      - name: Crear estructura Android
-        run: |
-          flutter create --platforms=android .
+ - name: Verificar archivos del proyecto
+ run: |
+ echo "Contenido del repositorio:"
+ find . -maxdepth 3 -type f | sort
 
-      - name: Verificar archivos del proyecto
-        run: |
-          echo "Contenido del repositorio:"
-          find . -maxdepth 3 -type f | sort
+ echo "Verificando archivos esenciales:"
+ test -f pubspec.yaml
+ test -f lib/main.dart
+ test -f assets/data/cronologia.json
+ test -f assets/images/logo.png
 
-          echo "Verificando archivos esenciales:"
-          test -f pubspec.yaml
-          test -f lib/main.dart
-          test -f assets/data/cronologia.json
-          test -f assets/images/logo.png
+ - name: Eliminar prueba automática de ejemplo
+ run: |
+ rm -f test/widget_test.dart
 
-      - name: Eliminar prueba automática de ejemplo
-        run: |
-          rm -f test/widget_test.dart
+ - name: Instalar dependencias
+ run: |
+ flutter pub get
 
-      - name: Instalar dependencias
-        run: |
-          flutter pub get
+ - name: Analizar código
+ run: |
+ flutter analyze
 
-      - name: Analizar código
-        run: |
-          flutter analyze
+ - name: Compilar APK
+ run: |
+ flutter build apk --release
 
-      - name: Compilar APK
-        run: |
-          flutter build apk --release
-
-      - name: Guardar APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: cronologia-fidel-castro-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+ - name: Guardar APK
+ uses: actions/upload-artifact@v4
+ with:
+ name: cronologia-fidel-castro-apk
+ path: build/app/outputs/flutter-apk/app-release.apk
