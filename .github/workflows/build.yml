@@ -1,4 +1,4 @@
-name: Compilar aplicación Android
+name: Compilar Cronología Fidel Castro
 
 on:
   workflow_dispatch:
@@ -7,7 +7,8 @@ on:
       - main
 
 jobs:
-  build:
+  build_android:
+    name: Compilar APK Android
     runs-on: ubuntu-latest
 
     steps:
@@ -22,16 +23,14 @@ jobs:
       - name: Crear estructura Android
         run: flutter create --platforms=android .
 
-      - name: Eliminar prueba de ejemplo
+      - name: Eliminar prueba automática de ejemplo
         run: rm -f test/widget_test.dart
-
 
       - name: Instalar dependencias
         run: flutter pub get
 
-      # - name: Analizar código
-#   run: flutter analyze
-
+      - name: Analizar código
+        run: flutter analyze
 
       - name: Compilar APK
         run: flutter build apk --release
@@ -39,5 +38,5 @@ jobs:
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
-          name: automatizado-analisis-psicologico-apk
+          name: cronologia-fidel-castro-apk
           path: build/app/outputs/flutter-apk/app-release.apk
