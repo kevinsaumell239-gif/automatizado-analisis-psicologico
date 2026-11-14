@@ -7,9 +7,12 @@ on:
       - main
 
 jobs:
-  build_android:
-    name: Compilar APK Android
-    runs-on: ubuntu-latest
+ build:
+ runs-on: ubuntu-latest
+ permissions:
+ contents: write
+ steps:
+ - uses: actions/checkout@v4
 
     steps:
       - name: Descargar repositorio
