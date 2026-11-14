@@ -21,19 +21,35 @@ jobs:
           channel: stable
 
       - name: Crear estructura Android
-        run: flutter create --platforms=android .
+        run: |
+          flutter create --platforms=android .
+
+      - name: Verificar archivos del proyecto
+        run: |
+          echo "Contenido del repositorio:"
+          find . -maxdepth 3 -type f | sort
+
+          echo "Verificando archivos esenciales:"
+          test -f pubspec.yaml
+          test -f lib/main.dart
+          test -f assets/data/cronologia.json
+          test -f assets/images/logo.png
 
       - name: Eliminar prueba automática de ejemplo
-        run: rm -f test/widget_test.dart
+        run: |
+          rm -f test/widget_test.dart
 
       - name: Instalar dependencias
-        run: flutter pub get
+        run: |
+          flutter pub get
 
       - name: Analizar código
-        run: flutter analyze
+        run: |
+          flutter analyze
 
       - name: Compilar APK
-        run: flutter build apk --release
+        run: |
+          flutter build apk --release
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
