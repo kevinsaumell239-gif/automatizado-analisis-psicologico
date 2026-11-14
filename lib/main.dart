@@ -154,77 +154,122 @@ class _PantallaCronologiaState extends State<PantallaCronologia> {
         backgroundColor: const Color(0xFF8B0000),
         foregroundColor: Colors.white,
       ),
-      body: FutureBuilder<List<AnioHistorico>>(
-        future: _cronologiaFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (snapshot.hasError) {
-            return _PantallaError(
-              mensaje: 'No se pudo cargar la cronología.\n\n'
-                  'Verifica que el archivo exista en:\n'
-                  'assets/data/cronologia.json',
-              detalle: snapshot.error.toString(),
-            );
-          }
-
-          final cronologia = snapshot.data ?? [];
-
-          if (cronologia.isEmpty) {
-            return const Center(
-              child: Text('No hay acontecimientos disponibles.'),
-            );
-          }
-
-          return ListView.builder(
+      body: Column(
+        children: [
+          Padding(
             padding: const EdgeInsets.all(12),
-            itemCount: cronologia.length,
-            itemBuilder: (context, index) {
-              final anio = cronologia[index];
+            child: Image.asset(
+              'assets/images/logo.png',
+              height: 120,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.history_edu,
+                  size: 80,
+                  color: Color(0xFF8B0000),
+                );
+              },
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              'Cronología documentada de Fidel Castro Ruz',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF8B0000),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Expanded(
+            child: FutureBuilder<List<AnioHistorico>>(
+              future: _cronologiaFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState ==
+                    ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
 
-              return Card(
-                margin: const EdgeInsets.symmetric(vertical: 6),
-                elevation: 2,
-                child: ListTile(
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  leading: CircleAvatar(
-                    backgroundColor: const Color(0xFF8B0000),
-                    foregroundColor: Colors.white,
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Text(
+                        'No se pudo cargar la cronología.\n\n'
+                        'Verifica el archivo cronologia.json.\n\n'
+                        '${snapshot.error}',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                }
+
+                final cronologia = snapshot.data ?? [];
+
+                if (cronologia.isEmpty) {
+                  return const Center(
                     child: Text(
-                      anio.anio.toString().substring(2),
-                      style: const TextStyle(fontSize: 12),
+                      'No hay acontecimientos disponibles.',
                     ),
-                  ),
-                  title: Text(
-                    '${anio.anio} · ${anio.titulo}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  subtitle: Text(
-                    '${anio.eventos.length} acontecimiento(s) documentado(s)',
-                  ),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => PantallaAnio(anio: anio),
+                  );
+                }
+
+                return ListView.builder(
+                  padding: const EdgeInsets.all(12),
+                  itemCount: cronologia.length,
+                  itemBuilder: (context, index) {
+                    final anio = cronologia[index];
+
+                    return Card(
+                      margin: const EdgeInsets.symmetric(vertical: 6),
+                      elevation: 2,
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        leading: CircleAvatar(
+                          backgroundColor: const Color(0xFF8B0000),
+                          foregroundColor: Colors.white,
+                          child: Text(
+                            anio.anio.toString().substring(2),
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ),
+                        title: Text(
+                          '${anio.anio} · ${anio.titulo}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        subtitle: Text(
+                          '${anio.eventos.length} acontecimiento(s) documentado(s)',
+                        ),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => PantallaAnio(anio: anio),
+                            ),
+                          );
+                        },
                       ),
                     );
                   },
-                ),
-              );
-            },
-          );
-        },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
