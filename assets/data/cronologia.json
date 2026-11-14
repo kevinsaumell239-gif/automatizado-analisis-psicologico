@@ -1,1 +1,211 @@
-
+[
+  {
+    "year": 1926,
+    "title": "Nacimiento",
+    "events": [
+      {
+        "date": "13 de agosto de 1926",
+        "title": "Nacimiento de Fidel Castro Ruz",
+        "description": "Fidel Alejandro Castro Ruz nació el 13 de agosto de 1926 en Birán, en la antigua provincia de Oriente, Cuba.",
+        "category": "Biografía",
+        "image": null,
+        "sources": [
+          {
+            "name": "Encyclopaedia Britannica",
+            "url": "https://www.britannica.com/biography/Fidel-Castro"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1945,
+    "title": "Ingreso en la Universidad de La Habana",
+    "events": [
+      {
+        "date": "1945",
+        "title": "Inicio de los estudios universitarios",
+        "description": "Fidel Castro ingresó en la Universidad de La Habana, donde estudió Derecho y comenzó a participar activamente en la vida política universitaria.",
+        "category": "Formación y política",
+        "image": null,
+        "sources": [
+          {
+            "name": "Encyclopaedia Britannica",
+            "url": "https://www.britannica.com/biography/Fidel-Castro"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1953,
+    "title": "Asalto al cuartel Moncada",
+    "events": [
+      {
+        "date": "26 de julio de 1953",
+        "title": "Asalto al cuartel Moncada",
+        "description": "Un grupo dirigido por Fidel Castro intentó tomar los cuarteles Moncada, en Santiago de Cuba, y Carlos Manuel de Céspedes, en Bayamo. La acción fracasó militarmente, pero tuvo una gran importancia política posterior.",
+        "category": "Actividad política y militar",
+        "image": null,
+        "sources": [
+          {
+            "name": "Encyclopaedia Britannica",
+            "url": "https://www.britannica.com/biography/Fidel-Castro"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1956,
+    "title": "Expedición del Granma",
+    "events": [
+      {
+        "date": "2 de diciembre de 1956",
+        "title": "Desembarco del Granma",
+        "description": "La expedición del yate Granma desembarcó en Cuba con un grupo de revolucionarios procedentes de México. Posteriormente, los supervivientes se establecieron en la Sierra Maestra.",
+        "category": "Actividad política y militar",
+        "image": null,
+        "sources": [
+          {
+            "name": "Encyclopaedia Britannica",
+            "url": "https://www.britannica.com/biography/Fidel-Castro"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1959,
+    "title": "Triunfo de la Revolución",
+    "events": [
+      {
+        "date": "1 de enero de 1959",
+        "title": "Victoria de las fuerzas revolucionarias",
+        "description": "Tras la salida de Fulgencio Batista del país, las fuerzas revolucionarias entraron en La Habana. Fidel Castro asumió progresivamente responsabilidades centrales en el nuevo gobierno cubano.",
+        "category": "Gobierno e historia política",
+        "image": null,
+        "sources": [
+          {
+            "name": "Encyclopaedia Britannica",
+            "url": "https://www.britannica.com/biography/Fidel-Castro"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1961,
+    "title": "Campaña Nacional de Alfabetización",
+    "events": [
+      {
+        "date": "1961",
+        "title": "Campaña de Alfabetización",
+        "description": "Durante 1961 se desarrolló en Cuba una campaña nacional de alfabetización impulsada por el nuevo gobierno. La campaña movilizó a estudiantes y voluntarios en distintas regiones del país.",
+        "category": "Educación y política social",
+        "image": null,
+        "sources": [
+          {
+            "name": "UNESCO",
+            "url": "https://unesdoc.unesco.org/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1962,
+    "title": "Crisis de Octubre",
+    "events": [
+      {
+        "date": "octubre de 1962",
+        "title": "Crisis de los misiles",
+        "description": "Cuba fue uno de los escenarios centrales de la crisis internacional de octubre de 1962, relacionada con el emplazamiento de misiles soviéticos en la isla y la confrontación entre Estados Unidos y la Unión Soviética.",
+        "category": "Relaciones internacionales",
+        "image": null,
+        "sources": [
+          {
+            "name": "Office of the Historian, U.S. Department of State",
+            "url": "https://history.state.gov/milestones/1961-1968/cuban-missile-crisis"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1976,
+    "title": "Nueva estructura institucional",
+    "events": [
+      {
+        "date": "1976",
+        "title": "Reorganización institucional del Estado cubano",
+        "description": "En 1976 se aprobó una nueva Constitución y se establecieron nuevas estructuras institucionales del Estado cubano. Fidel Castro asumió la presidencia del Consejo de Estado y del Consejo de Ministros.",
+        "category": "Instituciones y gobierno",
+        "image": null,
+        "sources": [
+          {
+            "name": "Encyclopaedia Britannica",
+            "url": "https://www.britannica.com/biography/Fidel-Castro"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1991,
+    "title": "Inicio del Período Especial",
+    "events": [
+      {
+        "date": "1991",
+        "title": "Nueva etapa económica y política",
+        "description": "La disolución de la Unión Soviética provocó una profunda crisis económica en Cuba. El gobierno cubano comenzó a aplicar medidas excepcionales conocidas posteriormente como Período Especial.",
+        "category": "Economía y sociedad",
+        "image": null,
+        "sources": [
+          {
+            "name": "Encyclopaedia Britannica",
+            "url": "https://www.britannica.com/biography/Fidel-Castro"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2008,
+    "title": "Renuncia a la Presidencia",
+    "events": [
+      {
+        "date": "19 de febrero de 2008",
+        "title": "Renuncia a la Presidencia del Consejo de Estado",
+        "description": "Fidel Castro anunció que no aspiraría ni aceptaría nuevamente los cargos de presidente del Consejo de Estado y comandante en jefe. Posteriormente, Raúl Castro fue elegido presidente del Consejo de Estado.",
+        "category": "Gobierno",
+        "image": null,
+        "sources": [
+          {
+            "name": "Encyclopaedia Britannica",
+            "url": "https://www.britannica.com/biography/Fidel-Castro"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2016,
+    "title": "Fallecimiento",
+    "events": [
+      {
+        "date": "25 de noviembre de 2016",
+        "title": "Fallecimiento de Fidel Castro Ruz",
+        "description": "Fidel Castro Ruz falleció el 25 de noviembre de 2016 en La Habana. Después de su fallecimiento se realizaron actos oficiales y ceremonias conmemorativas en Cuba.",
+        "category": "Biografía e historia contemporánea",
+        "image": null,
+        "sources": [
+          {
+            "name": "Encyclopaedia Britannica",
+            "url": "https://www.britannica.com/biography/Fidel-Castro"
+          }
+        ]
+      }
+    ]
+  }
+]
