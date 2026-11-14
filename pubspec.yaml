@@ -26,6 +26,6 @@ flutter:
 
   assets:
     - assets/data/cronologia.json
-    - assets/images/
-    - assets/portraits/
+    - assets/images/logo.png
+
  
