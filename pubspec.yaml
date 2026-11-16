@@ -1,28 +1,48 @@
-name: cronologia_fidel_castro
+name: Compilar Cronología Fidel Castro
 
-description: Aplicación educativa con una cronología documentada de Fidel Castro Ruz entre 1926 y 2016.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
-publish_to: "none"
+jobs:
+  build:
+    name: Compilar APK Android
+    runs-on: ubuntu-latest
 
-version: 1.0.0+1
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
 
-environment:
-  sdk: ">=3.0.0 <4.0.0"
+      - name: Instalar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
 
-dependencies:
-  flutter:
-    sdk: flutter
+      - name: Crear estructura Android
+        run: flutter create --platforms=android .
 
-  cupertino_icons: ^1.0.8
+      - name: Verificar archivos principales
+        run: |
+          test -f pubspec.yaml
+          test -f lib/main.dart
+          test -f assets/data/cronologia.json
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^5.0.0
+      - name: Eliminar prueba automática de ejemplo
+        run: rm -f test/widget_test.dart
 
-flutter:
-  uses-material-design: true
+      - name: Instalar dependencias
+        run: flutter pub get
 
-  assets:
-    - assets/data/cronologia.json
-    - assets/images/logo.png
+      - name: Analizar código
+        run: flutter analyze
+
+      - name: Compilar APK
+        run: flutter build apk --release
+
+      - name: Guardar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: cronologia-fidel-castro-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
