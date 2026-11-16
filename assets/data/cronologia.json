@@ -5,54 +5,357 @@
     "events": [
       {
         "date": "13 de agosto de 1926",
-        "title": "Nacimiento de Fidel Castro Ruz",
-        "description": "Fidel Alejandro Castro Ruz nació el 13 de agosto de 1926 en Birán, en la antigua provincia de Oriente, Cuba.",
-        "category": "Biografía",
-        "image": null,
-        "sources": [
-          {
-            "name": "Encyclopaedia Britannica",
-            "url": "https://www.britannica.com/biography/Fidel-Castro"
-          }
-        ]
+        "title": "Nacimiento en Birán",
+        "description": "Nace en la finca Manacas, Birán, Holguín.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1927,
+    "title": "Infancia",
+    "events": [
+      {
+        "date": "1927",
+        "title": "Primeros años",
+        "description": "Primeros años de vida en la zona rural de Holguín.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1928,
+    "title": "Infancia",
+    "events": [
+      {
+        "date": "1928",
+        "title": "Vida familiar",
+        "description": "Crece en el seno de la familia Castro.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1929,
+    "title": "Infancia",
+    "events": [
+      {
+        "date": "1929",
+        "title": "Infancia temprana",
+        "description": "Vive en el entorno agrícola de Birán.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1930,
+    "title": "Infancia",
+    "events": [
+      {
+        "date": "1930",
+        "title": "Infancia temprana",
+        "description": "Desarrollo de su niñez en Oriente.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1931,
+    "title": "Infancia",
+    "events": [
+      {
+        "date": "1931",
+        "title": "Infancia temprana",
+        "description": "Primeros años de escolaridad básica.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1932,
+    "title": "Infancia",
+    "events": [
+      {
+        "date": "1932",
+        "title": "Infancia temprana",
+        "description": "Desarrollo en el entorno rural.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1933,
+    "title": "Infancia",
+    "events": [
+      {
+        "date": "1933",
+        "title": "Contexto histórico",
+        "description": "Cuba atraviesa periodos de inestabilidad política tras la caída de Machado.",
+        "category": "Contexto"
+      }
+    ]
+  },
+  {
+    "year": 1934,
+    "title": "Inicios escolares",
+    "events": [
+      {
+        "date": "1934",
+        "title": "Estudios en La Salle",
+        "description": "Comienza su formación académica en instituciones religiosas como La Salle.",
+        "category": "Educación"
+      }
+    ]
+  },
+  {
+    "year": 1935,
+    "title": "Estudios",
+    "events": [
+      {
+        "date": "1935",
+        "title": "Formación temprana",
+        "description": "Continúa sus estudios en Santiago de Cuba.",
+        "category": "Educación"
+      }
+    ]
+  },
+  {
+    "year": 1936,
+    "title": "Estudios",
+    "events": [
+      {
+        "date": "1936",
+        "title": "Formación",
+        "description": "Desarrollo de su educación primaria y secundaria inicial.",
+        "category": "Educación"
+      }
+    ]
+  },
+  {
+    "year": 1937,
+    "title": "Estudios",
+    "events": [
+      {
+        "date": "1937",
+        "title": "Educación",
+        "description": "Formación académica continua.",
+        "category": "Educación"
+      }
+    ]
+  },
+  {
+    "year": 1938,
+    "title": "Estudios",
+    "events": [
+      {
+        "date": "1938",
+        "title": "Educación",
+        "description": "Desarrollo de su etapa escolar.",
+        "category": "Educación"
+      }
+    ]
+  },
+  {
+    "year": 1939,
+    "title": "Estudios",
+    "events": [
+      {
+        "date": "1939",
+        "title": "Ingreso al Colegio de Dolores",
+        "description": "Realiza estudios en el Colegio de Dolores en Santiago de Cuba.",
+        "category": "Educación"
+      }
+    ]
+  },
+  {
+    "year": 1940,
+    "title": "Juventud",
+    "events": [
+      {
+        "date": "1940",
+        "title": "Contexto social",
+        "description": "Cuba promulga una nueva Constitución.",
+        "category": "Contexto"
+      }
+    ]
+  },
+  {
+    "year": 1941,
+    "title": "Juventud",
+    "events": [
+      {
+        "date": "1941",
+        "title": "Formación académica",
+        "description": "Preparación para la educación superior.",
+        "category": "Educación"
+      }
+    ]
+  },
+  {
+    "year": 1942,
+    "title": "Juventud",
+    "events": [
+      {
+        "date": "1942",
+        "title": "Colegio de Belén",
+        "description": "Ingresa al prestigioso Colegio de Belén en La Habana.",
+        "category": "Educación"
+      }
+    ]
+  },
+  {
+    "year": 1943,
+    "title": "Juventud",
+    "events": [
+      {
+        "date": "1943",
+        "title": "Preparación universitaria",
+        "description": "Estudios intensivos en Belén.",
+        "category": "Educación"
+      }
+    ]
+  },
+  {
+    "year": 1944,
+    "title": "Juventud",
+    "events": [
+      {
+        "date": "1944",
+        "title": "Etapa preuniversitaria",
+        "description": "Finalización de estudios secundarios.",
+        "category": "Educación"
       }
     ]
   },
   {
     "year": 1945,
-    "title": "Ingreso en la Universidad de La Habana",
+    "title": "Vida Universitaria",
     "events": [
       {
         "date": "1945",
-        "title": "Inicio de los estudios universitarios",
-        "description": "Fidel Castro ingresó en la Universidad de La Habana, donde estudió Derecho y comenzó a participar activamente en la vida política universitaria.",
-        "category": "Formación y política",
-        "image": null,
-        "sources": [
-          {
-            "name": "Encyclopaedia Britannica",
-            "url": "https://www.britannica.com/biography/Fidel-Castro"
-          }
-        ]
+        "title": "Ingreso en la Universidad de La Habana",
+        "description": "Inicia la carrera de Derecho, donde comienza su actividad política.",
+        "category": "Formación y política"
+      }
+    ]
+  },
+  {
+    "year": 1946,
+    "title": "Vida Universitaria",
+    "events": [
+      {
+        "date": "1946",
+        "title": "Activismo estudiantil",
+        "description": "Participación en debates y movimientos estudiantiles.",
+        "category": "Formación y política"
+      }
+    ]
+  },
+  {
+    "year": 1947,
+    "title": "Activismo Político",
+    "events": [
+      {
+        "date": "1947",
+        "title": "Expedición de Cayo Confites",
+        "description": "Participa en la expedición contra el dictador Trujillo de la República Dominicana.",
+        "category": "Actividad política"
+      }
+    ]
+  },
+  {
+    "year": 1948,
+    "title": "Vida Personal y Política",
+    "events": [
+      {
+        "date": "1948",
+        "title": "Matrimonio y Bogotazo",
+        "description": "Se casa con Mirta Díaz Balart y presencia los efectos del Bogotazo en Colombia.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1949,
+    "title": "Vida Personal",
+    "events": [
+      {
+        "date": "1949",
+        "title": "Nacimiento de su primer hijo",
+        "description": "Nace Fidel Castro Díaz Balart.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1950,
+    "title": "Graduación",
+    "events": [
+      {
+        "date": "1950",
+        "title": "Abogado",
+        "description": "Se gradúa como abogado de la Universidad de La Habana.",
+        "category": "Formación"
+      }
+    ]
+  },
+  {
+    "year": 1951,
+    "title": "Juventud",
+    "events": [
+      {
+        "date": "1951",
+        "title": "Actividad legal y política",
+        "description": "Ejercicio de la abogacía y participación política creciente.",
+        "category": "Formación y política"
+      }
+    ]
+  },
+  {
+    "year": 1952,
+    "title": "Golpe de Estado",
+    "events": [
+      {
+        "date": "1952",
+        "title": "Golpe de Fulgencio Batista",
+        "description": "Batista toma el poder mediante un golpe de Estado, lo que radicaliza la postura de Fidel.",
+        "category": "Contexto"
       }
     ]
   },
   {
     "year": 1953,
-    "title": "Asalto al cuartel Moncada",
+    "title": "Lucha Revolucionaria",
     "events": [
       {
         "date": "26 de julio de 1953",
         "title": "Asalto al cuartel Moncada",
-        "description": "Un grupo dirigido por Fidel Castro intentó tomar los cuarteles Moncada, en Santiago de Cuba, y Carlos Manuel de Céspedes, en Bayamo. La acción fracasó militarmente, pero tuvo una gran importancia política posterior.",
-        "category": "Actividad política y militar",
-        "image": null,
-        "sources": [
-          {
-            "name": "Encyclopaedia Britannica",
-            "url": "https://www.britannica.com/biography/Fidel-Castro"
-          }
-        ]
+        "description": "Lidera el asalto al cuartel Moncada. Tras su captura, pronuncia 'La historia me absolverá'.",
+        "category": "Actividad política y militar"
+      }
+    ]
+  },
+  {
+    "year": 1954,
+    "title": "Prisión",
+    "events": [
+      {
+        "date": "1954",
+        "title": "Encarcelamiento",
+        "description": "Cumple condena en prisión tras el fracaso del asalto.",
+        "category": "Actividad política y militar"
+      }
+    ]
+  },
+  {
+    "year": 1955,
+    "title": "Exilio",
+    "events": [
+      {
+        "date": "1955",
+        "title": "Amnistía y México",
+        "description": "Es amnistiado, se exilia en México y funda el Movimiento 26 de Julio.",
+        "category": "Actividad política y militar"
       }
     ]
   },
@@ -63,15 +366,32 @@
       {
         "date": "2 de diciembre de 1956",
         "title": "Desembarco del Granma",
-        "description": "La expedición del yate Granma desembarcó en Cuba con un grupo de revolucionarios procedentes de México. Posteriormente, los supervivientes se establecieron en la Sierra Maestra.",
-        "category": "Actividad política y militar",
-        "image": null,
-        "sources": [
-          {
-            "name": "Encyclopaedia Britannica",
-            "url": "https://www.britannica.com/biography/Fidel-Castro"
-          }
-        ]
+        "description": "Desembarca con el grupo del Granma e inicia la lucha en la Sierra Maestra.",
+        "category": "Actividad política y militar"
+      }
+    ]
+  },
+  {
+    "year": 1957,
+    "title": "Guerra de Guerrillas",
+    "events": [
+      {
+        "date": "1957",
+        "title": "Consolidación en la Sierra",
+        "description": "Logra victorias militares y gana visibilidad internacional.",
+        "category": "Actividad política y militar"
+      }
+    ]
+  },
+  {
+    "year": 1958,
+    "title": "Ofensiva Final",
+    "events": [
+      {
+        "date": "1958",
+        "title": "Ofensiva del Ejército Rebelde",
+        "description": "Dirige la ofensiva final para derrocar a Batista.",
+        "category": "Actividad política y militar"
       }
     ]
   },
@@ -81,111 +401,681 @@
     "events": [
       {
         "date": "1 de enero de 1959",
-        "title": "Victoria de las fuerzas revolucionarias",
-        "description": "Tras la salida de Fulgencio Batista del país, las fuerzas revolucionarias entraron en La Habana. Fidel Castro asumió progresivamente responsabilidades centrales en el nuevo gobierno cubano.",
-        "category": "Gobierno e historia política",
-        "image": null,
-        "sources": [
-          {
-            "name": "Encyclopaedia Britannica",
-            "url": "https://www.britannica.com/biography/Fidel-Castro"
-          }
-        ]
+        "title": "Victoria Revolucionaria",
+        "description": "Batista huye. Fidel entra en La Habana y asume responsabilidades de gobierno.",
+        "category": "Gobierno e historia política"
+      }
+    ]
+  },
+  {
+    "year": 1960,
+    "title": "Reformas y Alianzas",
+    "events": [
+      {
+        "date": "1960",
+        "title": "Relación con la URSS y CDR",
+        "description": "Establece vínculos con la URSS y crea los Comités de Defensa de la Revolución.",
+        "category": "Gobierno"
       }
     ]
   },
   {
     "year": 1961,
-    "title": "Campaña Nacional de Alfabetización",
+    "title": "Socialismo y Alfabetización",
     "events": [
       {
         "date": "1961",
         "title": "Campaña de Alfabetización",
-        "description": "Durante 1961 se desarrolló en Cuba una campaña nacional de alfabetización impulsada por el nuevo gobierno. La campaña movilizó a estudiantes y voluntarios en distintas regiones del país.",
-        "category": "Educación y política social",
-        "image": null,
-        "sources": [
-          {
-            "name": "UNESCO",
-            "url": "https://unesdoc.unesco.org/"
-          }
-        ]
+        "description": "Ejecuta la campaña nacional de alfabetización y proclama el carácter socialista de la Revolución.",
+        "category": "Educación y política social"
       }
     ]
   },
   {
     "year": 1962,
-    "title": "Crisis de Octubre",
+    "title": "Crisis de los Misiles",
     "events": [
       {
         "date": "octubre de 1962",
         "title": "Crisis de los misiles",
-        "description": "Cuba fue uno de los escenarios centrales de la crisis internacional de octubre de 1962, relacionada con el emplazamiento de misiles soviéticos en la isla y la confrontación entre Estados Unidos y la Unión Soviética.",
-        "category": "Relaciones internacionales",
-        "image": null,
-        "sources": [
-          {
-            "name": "Office of the Historian, U.S. Department of State",
-            "url": "https://history.state.gov/milestones/1961-1968/cuban-missile-crisis"
-          }
-        ]
+        "description": "Protagonista de la crisis nuclear entre EE. UU. y la URSS.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1963,
+    "title": "Diplomacia",
+    "events": [
+      {
+        "date": "1963",
+        "title": "Confiscación de Embajada",
+        "description": "Confisca la Embajada de EE. UU. en Cuba.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1964,
+    "title": "Consolidación",
+    "events": [
+      {
+        "date": "1964",
+        "title": "Fortalecimiento del Estado",
+        "description": "Consolidación de las estructuras revolucionarias.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1965,
+    "title": "Liderazgo del Partido",
+    "events": [
+      {
+        "date": "1965",
+        "title": "Primer Secretario del PCC",
+        "description": "Es electo primer secretario del Buró Político del Partido Comunista de Cuba.",
+        "category": "Instituciones y gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1966,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1966",
+        "title": "Consolidación del mando",
+        "description": "Liderazgo absoluto del proceso revolucionario.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1967,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1967",
+        "title": "Influencia internacional",
+        "description": "Cuba gana peso en los movimientos de liberación mundial.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1968,
+    "title": "Expropiaciones",
+    "events": [
+      {
+        "date": "1968",
+        "title": "Expropiación de negocios",
+        "description": "Ordena la expropiación de negocios privados en la isla.",
+        "category": "Economía"
+      }
+    ]
+  },
+  {
+    "year": 1969,
+    "title": "Economía",
+    "events": [
+      {
+        "date": "1969",
+        "title": "Preparación para la Zafra",
+        "description": "Se preparan para el objetivo de los 10 millones de toneladas de azúcar.",
+        "category": "Economía"
+      }
+    ]
+  },
+  {
+    "year": 1970,
+    "title": "Zafra de los 10 Millones",
+    "events": [
+      {
+        "date": "1970",
+        "title": "Fracaso de la Zafra",
+        "description": "El proyecto de los 10 millones de toneladas de azúcar no se alcanza.",
+        "category": "Economía"
+      }
+    ]
+  },
+  {
+    "year": 1971,
+    "title": "Reorganización",
+    "events": [
+      {
+        "date": "1971",
+        "title": "Ajustes económicos",
+        "description": "Implementación de medidas tras la crisis de la zafra.",
+        "category": "Economía"
+      }
+    ]
+  },
+  {
+    "year": 1972,
+    "title": "Institucionalización",
+    "events": [
+      {
+        "date": "1972",
+        "title": "Proceso de institucionalización",
+        "description": "Inicio del proceso para formalizar las estructuras del Estado.",
+        "category": "Instituciones y gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1973,
+    "title": "Institucionalización",
+    "events": [
+      {
+        "date": "1973",
+        "title": "Continuidad del mando",
+        "description": "Refuerzo de las estructuras de poder centralizado.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1974,
+    "title": "Institucionalización",
+    "events": [
+      {
+        "date": "1974",
+        "title": "Avances institucionales",
+        "description": "Preparación para la nueva constitución.",
+        "category": "Instituciones y gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1975,
+    "title": "Internacionalismo",
+    "events": [
+      {
+        "date": "1975",
+        "title": "Intervención en África",
+        "description": "Envío de tropas para apoyar movimientos en Angola y otros países.",
+        "category": "Relaciones internacionales"
       }
     ]
   },
   {
     "year": 1976,
-    "title": "Nueva estructura institucional",
+    "title": "Nueva Constitución",
     "events": [
       {
         "date": "1976",
-        "title": "Reorganización institucional del Estado cubano",
-        "description": "En 1976 se aprobó una nueva Constitución y se establecieron nuevas estructuras institucionales del Estado cubano. Fidel Castro asumió la presidencia del Consejo de Estado y del Consejo de Ministros.",
-        "category": "Instituciones y gobierno",
-        "image": null,
-        "sources": [
-          {
-            "name": "Encyclopaedia Britannica",
-            "url": "https://www.britannica.com/biography/Fidel-Castro"
-          }
-        ]
+        "title": "Nueva estructura institucional",
+        "description": "Aprobación de la nueva Constitución y asunción como Presidente del Consejo de Estado.",
+        "category": "Instituciones y gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1977,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1977",
+        "title": "Consolidación del Estado socialista",
+        "description": "Estabilización de las nuevas instituciones.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1978,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1978",
+        "title": "Presencia regional",
+        "description": "Liderazgo en el bloque socialista y de países no alineados.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1979,
+    "title": "Países No Alineados",
+    "events": [
+      {
+        "date": "1979",
+        "title": "Presidencia del Movimiento de Países No Alineados",
+        "description": "Ejerce el liderazgo en el movimiento.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1980,
+    "title": "Contexto social",
+    "events": [
+      {
+        "date": "1980",
+        "title": "Crisis de los Marielinos",
+        "description": "Oleada migratoria hacia EE. UU.",
+        "category": "Sociedad"
+      }
+    ]
+  },
+  {
+    "year": 1981,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1981",
+        "title": "Consolidación del poder",
+        "description": "Continuidad en el liderazgo estatal.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1982,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1982",
+        "title": "Rol internacional",
+        "description": "Cuba mantiene su rol en el bloque soviético.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1983,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1983",
+        "title": "Presidencia de los No Alineados",
+        "description": "Finaliza su periodo en el movimiento.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1984,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1984",
+        "title": "Consolidación de la política estatal",
+        "description": "Estabilidad en el mando centralizado.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1985,
+    "title": "Salud",
+    "events": [
+      {
+        "date": "1985",
+        "title": "Abandono del tabaco",
+        "description": "Abandona el consumo de tabaco por razones de salud.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 1986,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1986",
+        "title": "Consolidación del mando",
+        "description": "Mantiene el control total de la política cubana.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1987,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1987",
+        "title": "Rol geopolítico",
+        "description": "Cuba sigue siendo un punto clave en la Guerra Fría.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1988,
+    "title": "Política interna",
+    "events": [
+      {
+        "date": "1988",
+        "title": "Crítica a la perestroika",
+        "description": "Expresa su desacuerdo con las reformas soviéticas.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1989,
+    "title": "Política interna",
+    "events": [
+      {
+        "date": "1989",
+        "title": "Juicio a militares",
+        "description": "Preside el juicio y ejecución de militares como Arnaldo Ochoa.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1990,
+    "title": "Período Especial",
+    "events": [
+      {
+        "date": "1990",
+        "title": "Crisis económica",
+        "description": "Con la caída del bloque soviético, anuncia el inicio del 'Período Especial'.",
+        "category": "Economía"
       }
     ]
   },
   {
     "year": 1991,
-    "title": "Inicio del Período Especial",
+    "title": "Período Especial",
     "events": [
       {
         "date": "1991",
-        "title": "Nueva etapa económica y política",
-        "description": "La disolución de la Unión Soviética provocó una profunda crisis económica en Cuba. El gobierno cubano comenzó a aplicar medidas excepcionales conocidas posteriormente como Período Especial.",
-        "category": "Economía y sociedad",
-        "image": null,
-        "sources": [
-          {
-            "name": "Encyclopaedia Britannica",
-            "url": "https://www.britannica.com/biography/Fidel-Castro"
-          }
-        ]
+        "title": "Nueva etapa económica",
+        "description": "Implementación de medidas de supervivencia económica extrema.",
+        "category": "Economía y sociedad"
+      }
+    ]
+  },
+  {
+    "year": 1992,
+    "title": "Ajustes económicos",
+    "events": [
+      {
+        "date": "1992",
+        "title": "Medidas de emergencia",
+        "description": "Continuación de las medidas del Período Especial.",
+        "category": "Economía"
+      }
+    ]
+  },
+  {
+    "year": 1993,
+    "title": "Apertura económica",
+    "events": [
+      {
+        "date": "1993",
+        "title": "Despenalización del dólar",
+        "description": "Abre la economía al turismo y la inversión extranjera.",
+        "category": "Economía"
+      }
+    ]
+  },
+  {
+    "year": 1994,
+    "title": "Crisis de los balseros",
+    "events": [
+      {
+        "date": "1994",
+        "title": "Crisis migratoria",
+        "description": "Se produce la crisis de los balseros; se permite la salida de miles de cubanos.",
+        "category": "Sociedad"
+      }
+    ]
+  },
+  {
+    "year": 1995,
+    "title": "Consolidación de la apertura",
+    "events": [
+      {
+        "date": "1995",
+        "title": "Desarrollo turístico",
+        "description": "El turismo se convierte en motor económico.",
+        "category": "Economía"
+      }
+    ]
+  },
+  {
+    "year": 1996,
+    "title": "Conflicto con EE. UU.",
+    "events": [
+      {
+        "date": "1996",
+        "title": "Incidente de las avionetas",
+        "description": "Cuba derriba dos avionetas de 'Hermanos al Rescate'.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1997,
+    "title": "Liderazgo",
+    "events": [
+      {
+        "date": "1997",
+        "title": "Consolidación política",
+        "description": "Mantiene la estabilidad interna a pesar de las crisis.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 1998,
+    "title": "Visita Papal",
+    "events": [
+      {
+        "date": "1998",
+        "title": "Visita de Juan Pablo II",
+        "description": "Recibe al Papa Juan Pablo II en una histórica visita a Cuba.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 1999,
+    "title": "Caso Elián González",
+    "events": [
+      {
+        "date": "1999",
+        "title": "Campaña de Elián González",
+        "description": "Lidera la campaña por el regreso del niño Elián González a Cuba.",
+        "category": "Sociedad"
+      }
+    ]
+  },
+  {
+    "year": 2000,
+    "title": "Caso Elián González",
+    "events": [
+      {
+        "date": "2000",
+        "title": "Resolución del caso",
+        "description": "Culmina la batalla política por el retorno del niño.",
+        "category": "Sociedad"
+      }
+    ]
+  },
+  {
+    "year": 2001,
+    "title": "Salud",
+    "events": [
+      {
+        "date": "2001",
+        "title": "Problemas de salud",
+        "description": "Sufre un desmayo y presenta problemas de salud recurrentes.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 2002,
+    "title": "Apoyo a Venezuela",
+    "events": [
+      {
+        "date": "2002",
+        "title": "Rescate de Hugo Chávez",
+        "description": "Maniobra política para el apoyo a Chávez tras el intento de golpe.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 2003,
+    "title": "Cesión provisional del poder",
+    "events": [
+      {
+        "date": "31 de julio de 2003",
+        "title": "Delegación de funciones",
+        "description": "Cede provisionalmente el poder a su hermano Raúl por motivos de salud.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 2004,
+    "title": "Salud",
+    "events": [
+      {
+        "date": "2004",
+        "title": "Accidente",
+        "description": "Sufre una caída que le provoca fracturas.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 2005,
+    "title": "Retiro de facto",
+    "events": [
+      {
+        "date": "2005",
+        "title": "Enfermedad",
+        "description": "Su presencia pública es cada vez más limitada.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 2006,
+    "title": "Traspaso de mando",
+    "events": [
+      {
+        "date": "26 de julio de 2006",
+        "title": "Último discurso público",
+        "description": "Ofrece su último discurso masivo. Cede el poder formalmente a Raúl.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 2007,
+    "title": "Reflexiones",
+    "events": [
+      {
+        "date": "2007",
+        "title": "Escritura de artículos",
+        "description": "Comienza a publicar sus artículos de 'Reflexiones'.",
+        "category": "Biografía"
       }
     ]
   },
   {
     "year": 2008,
-    "title": "Renuncia a la Presidencia",
+    "title": "Renuncia oficial",
     "events": [
       {
         "date": "19 de febrero de 2008",
-        "title": "Renuncia a la Presidencia del Consejo de Estado",
-        "description": "Fidel Castro anunció que no aspiraría ni aceptaría nuevamente los cargos de presidente del Consejo de Estado y comandante en jefe. Posteriormente, Raúl Castro fue elegido presidente del Consejo de Estado.",
-        "category": "Gobierno",
-        "image": null,
-        "sources": [
-          {
-            "name": "Encyclopaedia Britannica",
-            "url": "https://www.britannica.com/biography/Fidel-Castro"
-          }
-        ]
+        "title": "Renuncia a la Presidencia",
+        "description": "Anuncia oficialmente que no aspirará a los cargos de presidente.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 2009,
+    "title": "Retiro",
+    "events": [
+      {
+        "date": "2009",
+        "title": "Vida privada",
+        "description": "Se mantiene alejado de la gestión directa del Estado.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 2010,
+    "title": "Retiro",
+    "events": [
+      {
+        "date": "2010",
+        "title": "Salud y retiro",
+        "description": "Continúa en un retiro de la vida pública activa.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 2011,
+    "title": "Diagnóstico",
+    "events": [
+      {
+        "date": "2011",
+        "title": "Diagnóstico de cáncer",
+        "description": "Comunica a Hugo Chávez su diagnóstico de cáncer.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 2012,
+    "title": "Reapariciones",
+    "events": [
+      {
+        "date": "2012",
+        "title": "Encuentros religiosos",
+        "description": "Aparece esporádicamente en eventos religiosos.",
+        "category": "Biografía"
+      }
+    ]
+  },
+  {
+    "year": 2013,
+    "title": "Apoyo político",
+    "events": [
+      {
+        "date": "2013",
+        "title": "Apoyo al proceso parlamentario",
+        "description": "Expresa su apoyo al nuevo Parlamento.",
+        "category": "Gobierno"
+      }
+    ]
+  },
+  {
+    "year": 2014,
+    "title": "Reunión diplomática",
+    "events": [
+      {
+        "date": "2014",
+        "title": "Reunión con Xi Jinping",
+        "description": "Se reúne con el presidente chino.",
+        "category": "Relaciones internacionales"
+      }
+    ]
+  },
+  {
+    "year": 2015,
+    "title": "Retiro",
+    "events": [
+      {
+        "date": "2015",
+        "title": "Vida en retiro",
+        "description": "Mantiene su papel de figura histórica sin cargos.",
+        "category": "Biografía"
       }
     ]
   },
@@ -196,15 +1086,8 @@
       {
         "date": "25 de noviembre de 2016",
         "title": "Fallecimiento de Fidel Castro Ruz",
-        "description": "Fidel Castro Ruz falleció el 25 de noviembre de 2016 en La Habana. Después de su fallecimiento se realizaron actos oficiales y ceremonias conmemorativas en Cuba.",
-        "category": "Biografía e historia contemporánea",
-        "image": null,
-        "sources": [
-          {
-            "name": "Encyclopaedia Britannica",
-            "url": "https://www.britannica.com/biography/Fidel-Castro"
-          }
-        ]
+        "description": "Fallece en La Habana a los 90 años.",
+        "category": "Biografía e historia contemporánea"
       }
     ]
   }
