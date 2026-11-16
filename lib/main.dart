@@ -1,113 +1,404 @@
-import 'dart:convert'; 
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(const CronologiaFidelApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const FidelCentenarioApp());
 }
 
-class CronologiaFidelApp extends StatelessWidget {
-  const CronologiaFidelApp({super.key});
+/// Paleta cromática verde olivo histórica y solemne
+class ColoresApp {
+  static const Color verdeOlivoOscuro = Color(0xFF263A29);
+  static const Color verdeOlivoMedio  = Color(0xFF3E543B);
+  static const Color verdeOlivoSuave  = Color(0xFF5E7153);
+  static const Color doradoHistorico  = Color(0xFFC5A059);
+  static const Color fondoClaro       = Color(0xFFF7F8F5);
+  static const Color superficieTarjeta= Color(0xFFFFFFFF);
+  static const Color textoPrincipal   = Color(0xFF1B241B);
+  static const Color textoSecundario  = Color(0xFF556052);
+}
+
+class FidelCentenarioApp extends StatelessWidget {
+  const FidelCentenarioApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cronología Fidel Castro Ruz',
+      title: 'Centenario Fidel Castro Ruz',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
+        scaffoldBackgroundColor: ColoresApp.fondoClaro,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF8B0000),
+          seedColor: ColoresApp.verdeOlivoOscuro,
+          primary: ColoresApp.verdeOlivoOscuro,
+          secondary: ColoresApp.doradoHistorico,
+          surface: ColoresApp.superficieTarjeta,
         ),
-        scaffoldBackgroundColor: const Color(0xFFF8F5F0),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: ColoresApp.verdeOlivoOscuro,
+          foregroundColor: Colors.white,
+          elevation: 2,
+          centerTitle: true,
+        ),
       ),
-      home: const PantallaCronologia(),
+      home: const PantallaPrincipal(),
     );
   }
 }
 
+// ===============================================================
+// MODELOS EXACTOS AL ARCHIVO JSON PROPORCIONADO
+// ===============================================================
+
 class EventoHistorico {
-  final String fecha;
-  final String titulo;
-  final String descripcion;
-  final String categoria;
-  final String? imagen;
-  final List<FuenteHistorica> fuentes;
+  final String date;
+  final String title;
+  final String description;
+  final String category;
 
   const EventoHistorico({
-    required this.fecha,
-    required this.titulo,
-    required this.descripcion,
-    required this.categoria,
-    required this.imagen,
-    required this.fuentes,
+    required this.date,
+    required this.title,
+    required this.description,
+    required this.category,
   });
 
   factory EventoHistorico.fromJson(Map<String, dynamic> json) {
-    final fuentesJson = json['sources'] as List<dynamic>? ?? [];
-
     return EventoHistorico(
-      fecha: json['date'] as String? ?? '',
-      titulo: json['title'] as String? ?? 'Sin título',
-      descripcion: json['description'] as String? ?? '',
-      categoria: json['category'] as String? ?? 'Sin categoría',
-      imagen: json['image'] as String?,
-      fuentes: fuentesJson
-          .map(
-            (fuente) => FuenteHistorica.fromJson(
-              fuente as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    );
-  }
-}
-
-class FuenteHistorica {
-  final String nombre;
-  final String url;
-
-  const FuenteHistorica({
-    required this.nombre,
-    required this.url,
-  });
-
-  factory FuenteHistorica.fromJson(Map<String, dynamic> json) {
-    return FuenteHistorica(
-      nombre: json['name'] as String? ?? 'Fuente no especificada',
-      url: json['url'] as String? ?? '',
+      date: (json['date'] ?? '').toString(),
+      title: (json['title'] ?? 'Sin título').toString(),
+      description: (json['description'] ?? '').toString(),
+      category: (json['category'] ?? 'General').toString(),
     );
   }
 }
 
 class AnioHistorico {
-  final int anio;
-  final String titulo;
-  final List<EventoHistorico> eventos;
+  final int year;
+  final String title;
+  final List<EventoHistorico> events;
 
   const AnioHistorico({
-    required this.anio,
-    required this.titulo,
-    required this.eventos,
+    required this.year,
+    required this.title,
+    required this.events,
   });
 
   factory AnioHistorico.fromJson(Map<String, dynamic> json) {
-    final eventosJson = json['events'] as List<dynamic>? ?? [];
+    final rawYear = json['year'] ?? 0;
+    final int parsedYear = rawYear is int ? rawYear : int.tryParse(rawYear.toString()) ?? 0;
+
+    final eventsRaw = (json['events'] as List<dynamic>?) ?? [];
 
     return AnioHistorico(
-      anio: json['year'] as int,
-      titulo: json['title'] as String? ?? 'Sin título',
-      eventos: eventosJson
-          .map(
-            (evento) => EventoHistorico.fromJson(
-              evento as Map<String, dynamic>,
-            ),
-          )
+      year: parsedYear,
+      title: (json['title'] ?? '').toString(),
+      events: eventsRaw
+          .whereType<Map<String, dynamic>>()
+          .map((e) => EventoHistorico.fromJson(e))
           .toList(),
     );
   }
 }
+
+// ===============================================================
+// PANTALLA PRINCIPAL CON ENFOQUE DEL CENTENARIO Y 2 OPCIONES
+// ===============================================================
+
+class PantallaPrincipal extends StatelessWidget {
+  const PantallaPrincipal({super.key});
+
+  static const String urlSitioCentroFidel = 'https://www.centrofidel.cu';
+
+  Future<void> _abrirSitioCentroFidel(BuildContext context) async {
+    final uri = Uri.parse(urlSitioCentroFidel);
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('No fue posible abrir el navegador con el sitio web.'),
+              backgroundColor: ColoresApp.verdeOlivoOscuro,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error al conectar con el sitio: $e'),
+            backgroundColor: ColoresApp.verdeOlivoOscuro,
+          ),
+        );
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Centenario de Fidel Castro',
+          style: TextStyle(letterSpacing: 0.5, fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Emblema conmemorativo del Centenario
+              Container(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [ColoresApp.verdeOlivoOscuro, ColoresApp.verdeOlivoMedio],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: ColoresApp.verdeOlivoOscuro.withOpacity(0.25),
+                      blurRadius: 12,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 18),
+                child: Column(
+                  children: [
+                    // Intento de cargar logo de assets o icono solemne de respaldo
+                    Image.asset(
+                      'assets/images/logo.png',
+                      height: 100,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: ColoresApp.doradoHistorico, width: 2),
+                            color: Colors.white.withOpacity(0.1),
+                          ),
+                          child: const Icon(
+                            Icons.star_rounded,
+                            size: 50,
+                            color: ColoresApp.doradoHistorico,
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 14),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: ColoresApp.doradoHistorico.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: ColoresApp.doradoHistorico.withOpacity(0.7)),
+                      ),
+                      child: const Text(
+                        '1926 — 2026',
+                        style: TextStyle(
+                          color: ColoresApp.doradoHistorico,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'FIDEL CASTRO RUZ',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    const Text(
+                      'Homenaje en el Centenario de su Natalicio',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 13.5,
+                        color: Color(0xFFE2E7DE),
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 32),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4),
+                child: Text(
+                  'Menú Principal',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: ColoresApp.textoPrincipal,
+                    letterSpacing: 0.3,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              // OPCIÓN 1: Ver Cronología
+              _BotonMenuPrincipal(
+                titulo: 'Ver Cronología de Fidel Castro',
+                subtitulo: 'Recorrido histórico documentado año a año (1926–2016)',
+                icono: Icons.auto_stories_outlined,
+                colorFondoIcono: ColoresApp.verdeOlivoSuave.withOpacity(0.15),
+                colorIcono: ColoresApp.verdeOlivoOscuro,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PantallaCronologia(),
+                    ),
+                  );
+                },
+              ),
+
+              const SizedBox(height: 16),
+
+              // OPCIÓN 2: Visitar el Centro Fidel Castro
+              _BotonMenuPrincipal(
+                titulo: 'Visitar el Centro Fidel Castro',
+                subtitulo: 'Acceder al sitio web oficial institucional (centrofidel.cu)',
+                icono: Icons.account_balance_outlined,
+                colorFondoIcono: ColoresApp.doradoHistorico.withOpacity(0.15),
+                colorIcono: const Color(0xFF8A6B29),
+                iconoAccion: Icons.open_in_new,
+                onTap: () => _abrirSitioCentroFidel(context),
+              ),
+
+              const SizedBox(height: 36),
+
+              // Pie institucional
+              Center(
+                child: Column(
+                  children: [
+                    const Icon(
+                      Icons.history_edu,
+                      color: ColoresApp.verdeOlivoMedio,
+                      size: 26,
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'Centro Fidel Castro Ruz · La Habana, Cuba',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: ColoresApp.textoSecundario.withOpacity(0.8),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BotonMenuPrincipal extends StatelessWidget {
+  final String titulo;
+  final String subtitulo;
+  final IconData icono;
+  final Color colorFondoIcono;
+  final Color colorIcono;
+  final IconData iconoAccion;
+  final VoidCallback onTap;
+
+  const _BotonMenuPrincipal({
+    required this.titulo,
+    required this.subtitulo,
+    required this.icono,
+    required this.colorFondoIcono,
+    required this.colorIcono,
+    this.iconoAccion = Icons.chevron_right,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2.5,
+      shadowColor: Colors.black12,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: ColoresApp.verdeOlivoOscuro.withOpacity(0.08)),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: onTap,
+        splashColor: ColoresApp.verdeOlivoSuave.withOpacity(0.1),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+          child: Row(
+            children: [
+              Container(
+                width: 52,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: colorFondoIcono,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(icono, color: colorIcono, size: 28),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      titulo,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: ColoresApp.textoPrincipal,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitulo,
+                      style: const TextStyle(
+                        fontSize: 12.5,
+                        color: ColoresApp.textoSecundario,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(iconoAccion, color: ColoresApp.verdeOlivoMedio, size: 22),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ===============================================================
+// PANTALLA CRONOLOGÍA (1926 - 2016)
+// ===============================================================
 
 class PantallaCronologia extends StatefulWidget {
   const PantallaCronologia({super.key});
@@ -117,157 +408,203 @@ class PantallaCronologia extends StatefulWidget {
 }
 
 class _PantallaCronologiaState extends State<PantallaCronologia> {
-  late Future<List<AnioHistorico>> _cronologiaFuture;
+  List<AnioHistorico> _todosLosAnios = [];
+  List<AnioHistorico> _aniosFiltrados = [];
+  bool _cargando = true;
+  String _error = '';
+  final TextEditingController _controladorBusqueda = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _cronologiaFuture = cargarCronologia();
+    _cargarDatosJson();
+    _controladorBusqueda.addListener(_filtrarCronologia);
   }
 
-  Future<List<AnioHistorico>> cargarCronologia() async {
-    final contenido = await rootBundle.loadString(
-      'assets/data/cronologia.json',
-    );
+  @override
+  void dispose() {
+    _controladorBusqueda.dispose();
+    super.dispose();
+  }
 
-    final datos = jsonDecode(contenido) as List<dynamic>;
+  Future<void> _cargarDatosJson() async {
+    try {
+      final contenido = await rootBundle.loadString('assets/data/cronologia.json');
+      final dynamic decodificado = jsonDecode(contenido);
 
-    final cronologia = datos
-        .map(
-          (dato) => AnioHistorico.fromJson(
-            dato as Map<String, dynamic>,
-          ),
-        )
-        .toList();
+      List<dynamic> listaJson;
+      if (decodificado is List) {
+        listaJson = decodificado;
+      } else if (decodificado is Map<String, dynamic>) {
+        listaJson = (decodificado['years'] ?? decodificado['data'] ?? []) as List<dynamic>;
+      } else {
+        listaJson = [];
+      }
 
-    cronologia.sort((a, b) => a.anio.compareTo(b.anio));
+      final lista = listaJson
+          .whereType<Map<String, dynamic>>()
+          .map((item) => AnioHistorico.fromJson(item))
+          .toList();
 
-    return cronologia;
+      lista.sort((a, b) => a.year.compareTo(b.year));
+
+      setState(() {
+        _todosLosAnios = lista;
+        _aniosFiltrados = lista;
+        _cargando = false;
+      });
+    } catch (e) {
+      setState(() {
+        _error = e.toString();
+        _cargando = false;
+      });
+    }
+  }
+
+  void _filtrarCronologia() {
+    final query = _controladorBusqueda.text.toLowerCase().trim();
+    if (query.isEmpty) {
+      setState(() => _aniosFiltrados = _todosLosAnios);
+      return;
+    }
+
+    setState(() {
+      _aniosFiltrados = _todosLosAnios.where((a) {
+        final coincideAnio = a.year.toString().contains(query);
+        final coincideTitulo = a.title.toLowerCase().contains(query);
+        final coincideEventos = a.events.any((e) =>
+            e.title.toLowerCase().contains(query) ||
+            e.description.toLowerCase().contains(query) ||
+            e.category.toLowerCase().contains(query));
+        return coincideAnio || coincideTitulo || coincideEventos;
+      }).toList();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cronología 1926–2016'),
-        centerTitle: true,
-        backgroundColor: const Color(0xFF8B0000),
-        foregroundColor: Colors.white,
+        title: const Text('Cronología de Fidel Castro'),
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Image.asset(
-              'assets/images/logo.png',
-              height: 120,
-              width: double.infinity,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(
-                  Icons.history_edu,
-                  size: 80,
-                  color: Color(0xFF8B0000),
-                );
-              },
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              'Cronología documentada de Fidel Castro Ruz',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF8B0000),
+          // Barra de búsqueda elegante
+          Container(
+            color: ColoresApp.verdeOlivoOscuro,
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+            child: TextField(
+              controller: _controladorBusqueda,
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hintText: 'Buscar por año, evento o tema...',
+                hintStyle: TextStyle(color: Colors.white.withOpacity(0.65), fontSize: 14),
+                prefixIcon: const Icon(Icons.search, color: Colors.white70),
+                suffixIcon: _controladorBusqueda.text.isNotEmpty
+                    ? IconButton(
+                        icon: const Icon(Icons.clear, color: Colors.white70),
+                        onPressed: () => _controladorBusqueda.clear(),
+                      )
+                    : null,
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.12),
+                contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
               ),
             ),
           ),
-          const SizedBox(height: 8),
+
+          // Lista de años
           Expanded(
-            child: FutureBuilder<List<AnioHistorico>>(
-              future: _cronologiaFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState ==
-                    ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Text(
-                        'No se pudo cargar la cronología.\n\n'
-                        'Verifica el archivo cronologia.json.\n\n'
-                        '${snapshot.error}',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  );
-                }
-
-                final cronologia = snapshot.data ?? [];
-
-                if (cronologia.isEmpty) {
-                  return const Center(
-                    child: Text(
-                      'No hay acontecimientos disponibles.',
-                    ),
-                  );
-                }
-
-                return ListView.builder(
-                  padding: const EdgeInsets.all(12),
-                  itemCount: cronologia.length,
-                  itemBuilder: (context, index) {
-                    final anio = cronologia[index];
-
-                    return Card(
-                      margin: const EdgeInsets.symmetric(vertical: 6),
-                      elevation: 2,
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
-                        ),
-                        leading: CircleAvatar(
-                          backgroundColor: const Color(0xFF8B0000),
-                          foregroundColor: Colors.white,
+            child: _cargando
+                ? const Center(
+                    child: CircularProgressIndicator(color: ColoresApp.verdeOlivoOscuro),
+                  )
+                : _error.isNotEmpty
+                    ? Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(24),
                           child: Text(
-                            anio.anio.toString().substring(2),
-                            style: const TextStyle(fontSize: 12),
+                            'Error al leer assets/data/cronologia.json:\n$_error',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(color: Colors.red),
                           ),
                         ),
-                        title: Text(
-                          '${anio.anio} · ${anio.titulo}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        subtitle: Text(
-                          '${anio.eventos.length} acontecimiento(s) documentado(s)',
-                        ),
-                        trailing: const Icon(
-                          Icons.arrow_forward_ios,
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => PantallaAnio(anio: anio),
+                      )
+                    : _aniosFiltrados.isEmpty
+                        ? const Center(
+                            child: Text(
+                              'No se encontraron acontecimientos coincidentes.',
+                              style: TextStyle(color: ColoresApp.textoSecundario),
                             ),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+                          )
+                        : ListView.builder(
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                            itemCount: _aniosFiltrados.length,
+                            itemBuilder: (context, index) {
+                              final item = _aniosFiltrados[index];
+                              return Card(
+                                margin: const EdgeInsets.symmetric(vertical: 5),
+                                elevation: 1.8,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: ListTile(
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 6,
+                                  ),
+                                  leading: Container(
+                                    width: 48,
+                                    height: 48,
+                                    decoration: BoxDecoration(
+                                      color: ColoresApp.verdeOlivoOscuro,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '${item.year}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                  ),
+                                  title: Text(
+                                    item.title.isNotEmpty ? item.title : 'Año ${item.year}',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: ColoresApp.textoPrincipal,
+                                    ),
+                                  ),
+                                  subtitle: Text(
+                                    '${item.events.length} acontecimiento(s) registrado(s)',
+                                    style: const TextStyle(
+                                      color: ColoresApp.textoSecundario,
+                                      fontSize: 12.5,
+                                    ),
+                                  ),
+                                  trailing: const Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 15,
+                                    color: ColoresApp.verdeOlivoMedio,
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PantallaDetalleAnio(anio: item),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          ),
           ),
         ],
       ),
@@ -275,10 +612,14 @@ class _PantallaCronologiaState extends State<PantallaCronologia> {
   }
 }
 
-class PantallaAnio extends StatelessWidget {
+// ===============================================================
+// PANTALLA DETALLE DEL AÑO SELECCIONADO
+// ===============================================================
+
+class PantallaDetalleAnio extends StatelessWidget {
   final AnioHistorico anio;
 
-  const PantallaAnio({
+  const PantallaDetalleAnio({
     super.key,
     required this.anio,
   });
@@ -287,174 +628,139 @@ class PantallaAnio extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Año ${anio.anio}'),
-        backgroundColor: const Color(0xFF8B0000),
-        foregroundColor: Colors.white,
+        title: Text('Año ${anio.year}'),
       ),
-      body: anio.eventos.isEmpty
-          ? const Center(
-              child: Text(
-                'No hay acontecimientos incorporados para este año.',
-                textAlign: TextAlign.center,
-              ),
-            )
-          : ListView(
-              padding: const EdgeInsets.all(16),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          // Encabezado del año
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: ColoresApp.verdeOlivoOscuro.withOpacity(0.06),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: ColoresApp.verdeOlivoOscuro.withOpacity(0.12)),
+            ),
+            child: Row(
               children: [
                 Text(
-                  '${anio.anio}',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: const Color(0xFF8B0000),
-                        fontWeight: FontWeight.bold,
-                      ),
+                  '${anio.year}',
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w900,
+                    color: ColoresApp.verdeOlivoOscuro,
+                  ),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  anio.titulo,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                const SizedBox(height: 20),
-                ...anio.eventos.map(
-                  (evento) => TarjetaEvento(evento: evento),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Text(
+                    anio.title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: ColoresApp.textoPrincipal,
+                    ),
+                  ),
                 ),
               ],
             ),
+          ),
+          const SizedBox(height: 18),
+
+          // Lista de eventos
+          if (anio.events.isEmpty)
+            const Center(
+              child: Padding(
+                padding: EdgeInsets.all(32),
+                child: Text('No hay eventos documentados para este año.'),
+              ),
+            )
+          else
+            ...anio.events.map((evento) => _TarjetaEventoHistorico(evento: evento)),
+        ],
+      ),
     );
   }
 }
 
-class TarjetaEvento extends StatelessWidget {
+class _TarjetaEventoHistorico extends StatelessWidget {
   final EventoHistorico evento;
 
-  const TarjetaEvento({
-    super.key,
-    required this.evento,
-  });
+  const _TarjetaEventoHistorico({required this.evento});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 18),
-      elevation: 3,
+      margin: const EdgeInsets.only(bottom: 16),
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(14),
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(18),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (evento.imagen != null && evento.imagen!.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 14),
-                child: Image.asset(
-                  evento.imagen!,
-                  height: 190,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const SizedBox.shrink();
-                  },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Fecha
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.calendar_today_outlined,
+                      size: 15,
+                      color: ColoresApp.verdeOlivoOscuro,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      evento.date,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: ColoresApp.verdeOlivoOscuro,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            if (evento.fecha.isNotEmpty)
-              Text(
-                evento.fecha,
-                style: const TextStyle(
-                  color: Color(0xFF8B0000),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            const SizedBox(height: 6),
-            Text(
-              evento.titulo,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Chip(
-              label: Text(evento.categoria),
-              backgroundColor: const Color(0xFFF1E0D0),
+                // Etiqueta de Categoría
+                if (evento.category.isNotEmpty)
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: ColoresApp.verdeOlivoMedio.withOpacity(0.12),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      evento.category,
+                      style: const TextStyle(
+                        fontSize: 11.5,
+                        fontWeight: FontWeight.w600,
+                        color: ColoresApp.verdeOlivoOscuro,
+                      ),
+                    ),
+                  ),
+              ],
             ),
             const SizedBox(height: 10),
             Text(
-              evento.descripcion,
+              evento.title,
               style: const TextStyle(
-                fontSize: 16,
-                height: 1.5,
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                color: ColoresApp.textoPrincipal,
               ),
             ),
-            if (evento.fuentes.isNotEmpty) ...[
-              const SizedBox(height: 18),
-              const Divider(),
-              const Text(
-                'Fuentes consultadas',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+            const SizedBox(height: 8),
+            Text(
+              evento.description,
+              style: const TextStyle(
+                fontSize: 14.5,
+                height: 1.45,
+                color: ColoresApp.textoPrincipal,
               ),
-              const SizedBox(height: 6),
-              ...evento.fuentes.map(
-                (fuente) => Padding(
-                  padding: const EdgeInsets.only(bottom: 5),
-                  child: Text(
-                    '• ${fuente.nombre}',
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _PantallaError extends StatelessWidget {
-  final String mensaje;
-  final String detalle;
-
-  const _PantallaError({
-    required this.mensaje,
-    required this.detalle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.error_outline,
-                size: 70,
-                color: Colors.red,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                mensaje,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                detalle,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
