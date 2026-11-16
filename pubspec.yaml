@@ -1,6 +1,6 @@
 name: fidel_memories
-description: A new Flutter project.
-publish_to: 'none'
+description: "Aplicación conmemorativa por el Centenario de Fidel Castro Ruz - Cronología histórica documentada y acceso al Centro Fidel Castro."
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
@@ -10,23 +10,36 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # Iconos de estilo Cupertino (iOS)
   cupertino_icons: ^1.0.8
-  url_launcher: ^6.2.5 
+
+  # Necesario para abrir el sitio web oficial https://www.centrofidel.cu
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
-  flutter_launcher_icons: ^0.13.1 
 
+  # Reglas de buenas prácticas y análisis de código
+  flutter_lints: ^5.0.0
+
+  # Herramienta para generar automáticamente los iconos de la app (APK / iOS)
+  flutter_launcher_icons: ^0.13.1
+
+# Configuración del icono de la aplicación (Launcher Icon)
 flutter_launcher_icons:
-  android: "launcher_icon"
+  android: true
   ios: true
   image_path: "assets/images/icon.png"
   min_sdk_android: 21
+  adaptive_icon_background: "#263A29" # Fondo verde olivo institucional
+  adaptive_icon_foreground: "assets/images/icon.png"
 
 flutter:
   uses-material-design: true
+
+  # Declaración de recursos locales
   assets:
     - assets/data/cronologia.json
-    
+    - assets/images/
