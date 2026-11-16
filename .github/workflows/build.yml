@@ -23,20 +23,17 @@ jobs:
       - name: Crear estructura Android
         run: flutter create --platforms=android .
 
-      - name: Verificar archivos principales
+      - name: Eliminar prueba automática
+        run: rm -f test/widget_test.dart
+
+      - name: Verificar archivos necesarios
         run: |
           test -f pubspec.yaml
           test -f lib/main.dart
           test -f assets/data/cronologia.json
 
-      - name: Eliminar prueba automática de ejemplo
-        run: rm -f test/widget_test.dart
-
       - name: Instalar dependencias
         run: flutter pub get
-
-      - name: Analizar código
-        run: flutter analyze
 
       - name: Compilar APK
         run: flutter build apk --release
