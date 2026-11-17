@@ -21,20 +21,15 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Crear estructura Android inicial
-        run: |
-          if [ ! -d "android" ]; then
-            flutter create --platforms=android .
-          fi
+      - name: Crear plataforma Android
+        run: flutter create --platforms=android .
 
       - name: Configurar permisos e intents en AndroidManifest
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
-          # Añadir permiso de internet si falta
           if ! grep -q "android.permission.INTERNET" "$MANIFEST"; then
             sed -i '/<manifest/a \    <uses-permission android:name="android.permission.INTERNET" \/>' "$MANIFEST"
           fi
-          # Añadir queries para url_launcher
           if ! grep -q "<queries>" "$MANIFEST"; then
             sed -i '/<\/manifest>/i \    <queries>\n        <intent>\n            <action android:name="android.intent.action.VIEW" \/>\n            <data android:scheme="https" \/>\n        <\/intent>\n    <\/queries>' "$MANIFEST"
           fi
@@ -52,7 +47,7 @@ jobs:
       - name: Instalar dependencias
         run: flutter pub get
 
-      - name: Generar iconos de la aplicación
+      - name: Generar iconos de Android
         run: dart run flutter_launcher_icons
 
       - name: Compilar APK de producción
