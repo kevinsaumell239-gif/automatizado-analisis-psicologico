@@ -19,9 +19,25 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          cache: true
 
-      - name: Crear estructura Android
-        run: flutter create --platforms=android .
+      - name: Crear estructura Android inicial
+        run: |
+          if [ ! -d "android" ]; then
+            flutter create --platforms=android .
+          fi
+
+      - name: Configurar permisos e intents en AndroidManifest
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          # Añadir permiso de internet si falta
+          if ! grep -q "android.permission.INTERNET" "$MANIFEST"; then
+            sed -i '/<manifest/a \    <uses-permission android:name="android.permission.INTERNET" \/>' "$MANIFEST"
+          fi
+          # Añadir queries para url_launcher
+          if ! grep -q "<queries>" "$MANIFEST"; then
+            sed -i '/<\/manifest>/i \    <queries>\n        <intent>\n            <action android:name="android.intent.action.VIEW" \/>\n            <data android:scheme="https" \/>\n        <\/intent>\n    <\/queries>' "$MANIFEST"
+          fi
 
       - name: Eliminar prueba automática
         run: rm -f test/widget_test.dart
@@ -31,11 +47,15 @@ jobs:
           test -f pubspec.yaml
           test -f lib/main.dart
           test -f assets/data/cronologia.json
+          test -f assets/images/icon.png
 
       - name: Instalar dependencias
         run: flutter pub get
 
-      - name: Compilar APK
+      - name: Generar iconos de la aplicación
+        run: dart run flutter_launcher_icons
+
+      - name: Compilar APK de producción
         run: flutter build apk --release
 
       - name: Guardar APK
