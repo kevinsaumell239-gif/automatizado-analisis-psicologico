@@ -50,7 +50,7 @@ class FidelCentenarioApp extends StatelessWidget {
 }
 
 // ===============================================================
-// MODELOS EXACTOS AL ARCHIVO JSON PROPORCIONADO
+// MODELOS DE DATOS
 // ===============================================================
 
 class EventoHistorico {
@@ -90,7 +90,6 @@ class AnioHistorico {
   factory AnioHistorico.fromJson(Map<String, dynamic> json) {
     final rawYear = json['year'] ?? 0;
     final int parsedYear = rawYear is int ? rawYear : int.tryParse(rawYear.toString()) ?? 0;
-
     final eventsRaw = (json['events'] as List<dynamic>?) ?? [];
 
     return AnioHistorico(
@@ -105,34 +104,34 @@ class AnioHistorico {
 }
 
 // ===============================================================
-// PANTALLA PRINCIPAL CON ENFOQUE DEL CENTENARIO Y 2 OPCIONES
+// PANTALLA PRINCIPAL
 // ===============================================================
 
 class PantallaPrincipal extends StatelessWidget {
   const PantallaPrincipal({super.key});
 
-  static const String urlSitioCentroFidel = 'https://www.centrofidel.cu';
-
   Future<void> _abrirSitioCentroFidel(BuildContext context) async {
-    final uri = Uri.parse(urlSitioCentroFidel);
+    final uri = Uri.parse('https://www.centrofidel.cu');
+
     try {
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      } else {
-        if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('No fue posible abrir el navegador con el sitio web.'),
-              backgroundColor: ColoresApp.verdeOlivoOscuro,
-            ),
-          );
-        }
+      final lanzado = await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+
+      if (!lanzado && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('No se pudo abrir el sitio web en el navegador.'),
+            backgroundColor: ColoresApp.verdeOlivoOscuro,
+          ),
+        );
       }
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error al conectar con el sitio: $e'),
+            content: Text('Error al conectar: $e'),
             backgroundColor: ColoresApp.verdeOlivoOscuro,
           ),
         );
@@ -155,7 +154,7 @@ class PantallaPrincipal extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Emblema conmemorativo del Centenario
+              // Emblema conmemorativo
               Container(
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
@@ -172,30 +171,33 @@ class PantallaPrincipal extends StatelessWidget {
                     ),
                   ],
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 18),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 18),
                 child: Column(
                   children: [
-                    // Intento de cargar logo de assets o icono solemne de respaldo
-                    Image.asset(
-                      'assets/images/logo.png',
-                      height: 100,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: ColoresApp.doradoHistorico, width: 2),
-                            color: Colors.white.withOpacity(0.1),
-                          ),
-                          child: const Icon(
-                            Icons.star_rounded,
-                            size: 50,
-                            color: ColoresApp.doradoHistorico,
-                          ),
-                        );
-                      },
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.asset(
+                        'assets/images/icon.png',
+                        height: 120,
+                        width: 120,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            width: 80,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: ColoresApp.doradoHistorico, width: 2),
+                              color: Colors.white.withOpacity(0.1),
+                            ),
+                            child: const Icon(
+                              Icons.star_rounded,
+                              size: 50,
+                              color: ColoresApp.doradoHistorico,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     const SizedBox(height: 14),
                     Container(
@@ -277,8 +279,8 @@ class PantallaPrincipal extends StatelessWidget {
               // OPCIÓN 2: Visitar el Centro Fidel Castro
               _BotonMenuPrincipal(
                 titulo: 'Visitar el Centro Fidel Castro',
-                subtitulo: 'Acceder al sitio web oficial institucional (centrofidel.cu)',
-                icono: Icons.account_balance_outlined,
+                subtitulo: 'Acceder al portal oficial en www.centrofidel.cu',
+                icono: Icons.language,
                 colorFondoIcono: ColoresApp.doradoHistorico.withOpacity(0.15),
                 colorIcono: const Color(0xFF8A6B29),
                 iconoAccion: Icons.open_in_new,
@@ -287,25 +289,14 @@ class PantallaPrincipal extends StatelessWidget {
 
               const SizedBox(height: 36),
 
-              // Pie institucional
               Center(
-                child: Column(
-                  children: [
-                    const Icon(
-                      Icons.history_edu,
-                      color: ColoresApp.verdeOlivoMedio,
-                      size: 26,
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      'Centro Fidel Castro Ruz · La Habana, Cuba',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: ColoresApp.textoSecundario.withOpacity(0.8),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  'Centro Fidel Castro Ruz · La Habana, Cuba',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: ColoresApp.textoSecundario.withOpacity(0.8),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ],
@@ -489,7 +480,6 @@ class _PantallaCronologiaState extends State<PantallaCronologia> {
       ),
       body: Column(
         children: [
-          // Barra de búsqueda elegante
           Container(
             color: ColoresApp.verdeOlivoOscuro,
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -516,8 +506,6 @@ class _PantallaCronologiaState extends State<PantallaCronologia> {
               ),
             ),
           ),
-
-          // Lista de años
           Expanded(
             child: _cargando
                 ? const Center(
@@ -613,7 +601,7 @@ class _PantallaCronologiaState extends State<PantallaCronologia> {
 }
 
 // ===============================================================
-// PANTALLA DETALLE DEL AÑO SELECCIONADO
+// PANTALLA DETALLE DEL AÑO
 // ===============================================================
 
 class PantallaDetalleAnio extends StatelessWidget {
@@ -633,7 +621,6 @@ class PantallaDetalleAnio extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // Encabezado del año
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -666,8 +653,6 @@ class PantallaDetalleAnio extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
-
-          // Lista de eventos
           if (anio.events.isEmpty)
             const Center(
               child: Padding(
@@ -704,7 +689,6 @@ class _TarjetaEventoHistorico extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Fecha
                 Row(
                   children: [
                     const Icon(
@@ -723,7 +707,6 @@ class _TarjetaEventoHistorico extends StatelessWidget {
                     ),
                   ],
                 ),
-                // Etiqueta de Categoría
                 if (evento.category.isNotEmpty)
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
