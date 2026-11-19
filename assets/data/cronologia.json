@@ -330,7 +330,7 @@
       {
         "date": "26 de julio de 1953",
         "title": "Asalto al cuartel Moncada",
-        "description": "Lidera el asalto al cuartel Moncada. Tras su captura, pronuncia 'La historia me absolverá'.",
+        "description": "Lideró el asalto al Cuartel Moncada. Aunque fue un fracaso militar, este acto marcó el inicio de la lucha armada contra la dictadura de Batista y dio nombre al Movimiento 26 de Julio. Tras su captura, pronuncia 'La historia me absolverá'.",
         "category": "Actividad política y militar"
       }
     ]
@@ -342,7 +342,7 @@
       {
         "date": "1954",
         "title": "Encarcelamiento",
-        "description": "Cumple condena en prisión tras el fracaso del asalto.",
+        "description": " Tras el asalto al Cuartel Moncada, Fidel Castro fue condenado a prisión. Fue trasladado a la Isla de Pinos (hoy Isla de la Juventud), donde permaneció encarcelado hasta 1955. Durante este periodo, utilizó su defensa en el juicio como una plataforma política para denunciar la dictadura de Batista, lo que aumentó su prestigio y le permitió organizar la resistencia desde la clandestinidad tras ser amnistiado.",
         "category": "Actividad política y militar"
       }
     ]
@@ -425,8 +425,8 @@
     "events": [
       {
         "date": "1961",
-        "title": "Campaña de Alfabetización",
-        "description": "Ejecuta la campaña nacional de alfabetización y proclama el carácter socialista de la Revolución.",
+        "title": "Campaña de Alfabetización / Playa Girón / Declaración del carácter socialista de la Revolución (16 de abril)",
+        "description": "Ejecuta la campaña nacional de alfabetización y proclama el carácter socialista de la Revolución. Dirigió la resistencia militar y política contra la invasión de la Brigada de Asalto 2506 (apoyada por EE. UU.), logrando la victoria que consolidó el poder de su gobierno. Durante el combate en Playa Girón, Fidel Castro proclamó oficialmente el carácter socialista de la Revolución, cambiando el rumbo ideológico de la lucha hacia el modelo marxista-leninista.",
         "category": "Educación y política social"
       }
     ]
