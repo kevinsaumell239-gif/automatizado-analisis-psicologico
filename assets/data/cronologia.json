@@ -505,12 +505,12 @@
   },
   {
     "year": 1968,
-    "title": "Expropiaciones",
+    "title": "Nacionalizaciones",
     "events": [
       {
         "date": "1968",
-        "title": "Expropiación de negocios",
-        "description": "Ordena la expropiación de negocios privados en la isla.",
+        "title": "Nacionalización de negocios",
+        "description": "Ordena la Nacionalización de negocios privados en la isla.",
         "category": "Economía"
       }
     ]
@@ -774,7 +774,7 @@
       {
         "date": "1990",
         "title": "Crisis económica",
-        "description": "Con la caída del bloque soviético, anuncia el inicio del 'Período Especial'.",
+        "description": "Con la caída del campo socialista y la desinteggración de la unión soviética, anuncia el inicio del 'Período Especial'.",
         "category": "Economía"
       }
     ]
